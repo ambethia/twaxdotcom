@@ -4,7 +4,7 @@
       .col-xs-12
         .links-group
           = image_tag 'your-logo.jpg', class: 'image-block your-logo-block'
-          a Twax Home
+          = link_to "Twax Home", root_url
         br
 
     .row
@@ -47,7 +47,7 @@
           |(555) 555-5555
 
 
-.container.last-container
+.container.content-container
   .row
     .col-xs-12
       = image_tag 'hr.png', class: 'hr'
@@ -58,6 +58,24 @@
       p.guide &#42;Dial 555-555-5555
       p.guide
         = link_to "&#42;Send Fax (for more fax support click this link)", help_path
+
+- if @faxes.any?
+  .yellow-bar
+    .container
+      .row
+        .col-xs-8
+          h1 My TWAXes
+
+
+
+  .container.last-container
+    .row
+      .col-xs-12
+        table border="4" borderspacing="2"
+          thead
+            tr
+              th TWAX
+              th TWAX
 
 .professional-skills
   |&gt;/div>&lt;/font>&lt;/table>
