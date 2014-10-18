@@ -7,15 +7,13 @@ Rails.application.routes.draw do
     root to: 'visitors#index'
   end
 
-  %i(real help help_left help_right).each do |action|
-    get "/#{action}" => "visitors##{action}"
-  end
-
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signin' => 'sessions#new', :as => :signin
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/auth/failure' => 'sessions#failure'
   get '/fax/receive' => 'webhooks#receive'
+
+  get '/help(/:action)', controller: 'help'
 
   match '/mail' => 'webhooks#inbound_mail', via: [:get, :post]
 end

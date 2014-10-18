@@ -1,0 +1,6 @@
+doctype frameset
+html
+  == render :partial => "shared/head"
+frameset cols="20%,80%"
+  frame src="/help/menu.html" name="left"
+  frame src="/help/#{params[:page] || 'default'}.html" name="right"
