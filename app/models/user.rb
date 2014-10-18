@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
+  has_many :faxes
+
   def set_default_role
     if User.count == 0
       self.role ||= :admin
