@@ -4,12 +4,28 @@ class User < ActiveRecord::Base
 
   has_many :faxes
 
+  after_create :generate_barcode
+
   def set_default_role
     if User.count == 0
       self.role ||= :admin
     else
       self.role ||= :user
     end
+  end
+
+  def generate_barcode
+    User.create_phaxio_barcode(self.id)
+  end
+
+  class << self
+    def create_phaxio_barcode(id)
+      user = User.find(id)
+      res = Phaxio.send_post('/createPhaxCode', metadata: id.to_s)
+      user.update_attributes(phaxio_barcode_url: res['data']['url'])
+    end
+
+    handle_asynchronously :create_phaxio_barcode
   end
 
   def self.update_or_create_with_omniauth(auth)
@@ -23,8 +39,14 @@ class User < ActiveRecord::Base
       user.secret = auth['credentials']['secret']
     end
 
+    user.oauth_data = auth
+
     user.save!
     user
+  end
+
+  def avatar_url
+    oauth_data && oauth_data['info']['image']
   end
 
 

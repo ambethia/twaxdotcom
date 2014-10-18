@@ -23,6 +23,17 @@ body.faxes {
   margin-bottom: 15px;
 }
 
+.current-user-avatar {
+  top: 1px;
+  left: 16px;
+  height: 159px;
+  width: 159px;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
 .welcome {
   position: relative;
   padding-left: 30px;
@@ -86,5 +97,27 @@ img.hr {
 }
 
 .old-table {
-  border-width: 2px;
+  border-top-width: 5px;
+  border-right-width: 5px;
+  border-bottom-width: 5px;
+  border-left-width: 5px;
+  border-spacing: 2px;
+  width: 100%;
+  white-space: normal;
+  line-height: normal;
+  font-weight: normal;
+  font-size: medium;
+  font-variant: normal;
+  font-style: normal;
+  color: -webkit-text;
+  text-align: start;
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: gray;
+  margin: 20px 0;
+
+  td {
+    text-align: center;
+  }
 }

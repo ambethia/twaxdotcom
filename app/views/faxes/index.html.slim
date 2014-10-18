@@ -10,6 +10,9 @@
     .row
       .col-xs-2
         = image_tag 'your-placeholder.jpg', class: 'your-placeholder-block'
+
+        - if current_user.avatar_url
+          = image_tag current_user.avatar_url, class: 'image-block current-user-avatar'
       .col-xs-10
         p.welcome
           | [your twitter name] welcome
@@ -33,7 +36,10 @@
       p.guide &#42;Click the "print PDF" button.
       p.guide &#42;Open "TWAX PDF" in a Windows application.
       p.guide &#42;Select File > Print.
-      p.guide &#42;Choose Adobe PDF as the printer in the Print dialog box.
+      p.guide
+        |&#42;Choose
+        = link_to ' Adobe PDF ', 'http://google.com/q?adobe reader'
+        |as the printer in the Print dialog box.
       p.guide &#42;Click Print.
 
 .yellow-bar
@@ -53,11 +59,11 @@
       = image_tag 'hr.png', class: 'hr'
       p.guide
         |&#42;Go to your fax machine (ple
-        = link_to "ase check supported fax machines first)", help_path
+        = link_to "ase check supported fax machines first)", help_path(page: 'SUPPORTED_FAX_MACHINES')
       p.guide &#42;Insert your completed "TWAX PDF".
       p.guide &#42;Dial 555-555-5555
       p.guide
-        = link_to "&#42;Send Fax (for more fax support click this link)", help_path
+        = link_to "&#42;Send Fax (for more fax support click this link)", help_path(page: 'hOW_to')
 
 - if @faxes.any?
   .yellow-bar
@@ -71,11 +77,21 @@
   .container.last-container
     .row
       .col-xs-12
-        table border="4" borderspacing="2"
+        table.old-table border="4" cellpadding="2" cellspacing="2" width="100%" borderspacing="2"
           thead
             tr
-              th TWAX
-              th TWAX
+              th width="33%" Fax
+              th width="33%" Tweet
+              th width="33%" Pages
+
+          tbody
+            - @faxes.each do |fax|
+              tr
+                td= link_to 'Fax', fax.file.url
+                td
+                td
+                  - fax.pages.each do |page|
+                    img src=page.file.url width="50"
 
 .professional-skills
   |&gt;/div>&lt;/font>&lt;/table>

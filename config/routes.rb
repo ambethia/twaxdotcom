@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'sessions#failure'
   get '/fax/receive' => 'webhooks#receive'
 
-  get '/help(/:action)', controller: 'help'
+  get '/help(/:action)', controller: 'help', as: 'help'
 
   match '/mail' => 'webhooks#inbound_mail', via: [:get, :post]
 end
