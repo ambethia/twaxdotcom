@@ -16,17 +16,18 @@ class Fax < ActiveRecord::Base
     def convert_to_images(id)
       fax = Fax.find(id)
 
-      tempfile = Tempfile.new("fax_id_#{id}.pdf") do |f|
-        f.write fax.file.read
+      tempfile = Tempfile.new("fax_id_#{id}.pdf")
+      File.open(tempfile.path, 'wb+') { |f| f.write fax.file.read }
+
+      pdf = Grim.reap(tempfile.path)
+
+      pdf.each_with_index do |image, index|
+        image_tempfile = Tempfile.new(["fax_#{id}_page_#{index}", ".png"])
+        saved = image.save(image_tempfile.path)
+        fax.pages.create!(file: image_tempfile)
       end
 
-      Magick::Image.read(tempfile.path).each.with_index do |image, index|
-        image_tempfile = Tempfile.new("fax_#{id}_page_#{index}.png")
-        image.write(image_tempfile.path)
-        fax.pages.create(file: image_tempfile)
-      end
-
-      Fax.tweet_fax(id)
+      # Fax.tweet_fax(id)
     end
 
     handle_asynchronously :convert_to_images
@@ -36,6 +37,6 @@ class Fax < ActiveRecord::Base
       # Tweet...
     end
 
-    handle_asynchronously :convert_to_images
+    handle_asynchronously :tweet_fax
   end
 end

@@ -16,7 +16,8 @@
         = image_tag 'as-seen-on-rr.png',  class: 'image-block as-seen-on-rr'
       = image_tag 'video.png',          class: 'image-block video-block'
       = image_tag 'social-media.png',   class: 'image-block social-media-block', onclick: 'alert("COMING SOON!")'
-      = image_tag 'try-now-button.png', class: 'image-block try-now-block'
+      = link_to signin_path do
+        = image_tag 'try-now-button.png', class: 'image-block try-now-block'
 
   .row
     .col-xs-12.third-row

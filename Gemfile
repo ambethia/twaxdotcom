@@ -6,6 +6,7 @@ gem 'pg'
 gem 'delayed_job_active_record'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'grim'
 gem 'fog'
 
 gem 'sass-rails', '~> 5.0.0.beta1'

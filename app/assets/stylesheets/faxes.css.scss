@@ -1,0 +1,86 @@
+@import 'colors';
+
+hr.unstyled {
+  border-bottom: 3px inset white;
+}
+
+body.faxes {
+  background-color: white;
+}
+
+.aqua-box {
+  background-color: $aqua;
+  width: 100%;
+}
+
+.your-logo-block {
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.your-placeholder-block {
+  margin-bottom: 15px;
+}
+
+.welcome {
+  position: relative;
+  padding-left: 30px;
+  padding-top: 30px;
+  font-family: courier;
+  font-size: 22px;
+  z-index: 999;
+}
+
+.yellow-bar {
+  position: relative;
+  background-color: yellow;
+
+  h1 {
+    font-style: italic;
+    padding: 10px;
+    margin: 0;
+  }
+
+  h2 {
+    display: inline-block;
+    font-weight: bold;
+    margin: 0;
+    padding-top: 15px;
+    padding-left: 40px;
+    width: 100%;
+    text-align: right;
+  }
+}
+
+.content-container {
+  height: 250px;
+}
+
+img.hr {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.print-pdf-block {
+  position: absolute;
+  right: 30px;
+  top: -70px;
+}
+
+.guide {
+  padding-left: 55px;
+  font-family: courier;
+  white-space: pre;
+  font-size: 17px;
+  margin: 0;
+}
+
+.phone-block {
+  left: 35px;
+  top: 10px;
+}
+
+.professional-skills {
+  margin: 100px 0;
+}
