@@ -3,6 +3,8 @@ head
     | Twax -&nbsp;
     = content_for?(:title) ? yield(:title) : "The original Twitter Fax Gateway"
   meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Twax'}"
+  meta name="GENERATOR" content="Microsoft FrontPage 98"
+  meta name="ProgId" content="FrontPage.Editor.Document"
   == stylesheet_link_tag "application", :media => 'all'
   == javascript_include_tag 'application'
   == csrf_meta_tags
