@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'sessions#failure'
   get '/fax/receive' => 'webhooks#receive'
 
-  post '/mail' => 'webhooks#inbound_mail'
+  match '/mail' => 'webhooks#inbound_mail'
 end
