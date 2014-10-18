@@ -1,0 +1,28 @@
+.container
+  .row
+    .col-xs-4
+      .links-group
+        a &nbspHelp
+        a Getting Started
+        a About&nbsp;
+        a Contact
+    .col-xs-8.logo-container
+      = image_tag 'logo.png', class: 'logo'
+
+  .row
+    .col-xs-12.second-row
+      = image_tag 'background.png',     class: 'background-block', width: '100%', height: '482'
+      a href="http://railsrumble.com/entries/250-just-the-fax-maam"
+        = image_tag 'as-seen-on-rr.png',  class: 'image-block as-seen-on-rr'
+      = image_tag 'video.png',          class: 'image-block video-block'
+      = image_tag 'social-media.png',   class: 'image-block social-media-block', onclick: 'alert("COMING SOON!")'
+      = image_tag 'try-now-button.png', class: 'image-block try-now-block'
+
+  .row
+    .col-xs-12.third-row
+      = image_tag 'fax-machines.png',   class: 'image-block fax-machines-block'
+      = image_tag 'how-it-works.png',   class: 'image-block how-it-works-block'
+
+  .row
+    .col-xs-12.fourth-row
+      = image_tag 'mobile.png',         class: 'image-block mobile-block'
