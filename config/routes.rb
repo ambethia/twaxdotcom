@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/auth/failure' => 'sessions#failure'
   get '/fax/receive' => 'webhooks#receive'
+
+  get '/mail' => 'webhooks#inbound_mail'
 end
