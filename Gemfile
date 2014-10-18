@@ -4,6 +4,9 @@ gem 'rails', '4.2.0.beta1'
 gem 'thin'
 gem 'pg'
 gem 'delayed_job_active_record'
+gem 'carrierwave'
+gem 'rmagick'
+gem 'fog'
 
 gem 'sass-rails', '~> 5.0.0.beta1'
 gem 'bootstrap-sass'
@@ -33,6 +36,7 @@ group :development do
   gem 'byebug'
   gem 'web-console', '~> 2.0.0.beta2'
   gem 'spring'
+  gem 'foreman'
 end
 
 group :production do

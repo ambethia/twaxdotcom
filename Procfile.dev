@@ -1,0 +1,3 @@
+web: bin/rails s
+db: postgres -D /usr/local/var/postgres
+worker: bin/rake jobs:work
