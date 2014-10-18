@@ -10,4 +10,10 @@ class VisitorsController < ApplicationController
     define_method action do
     end
   end
+
+  def try_now_path
+    current_user ? faxes_path : signin_path
+  end
+
+  helper_method :try_now_path
 end
