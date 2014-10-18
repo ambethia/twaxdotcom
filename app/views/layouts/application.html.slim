@@ -2,7 +2,8 @@ doctype html
 html
   head
     title
-      = content_for?(:title) ? yield(:title) : 'Twax'
+      | Twax -&nbsp;
+      = content_for?(:title) ? yield(:title) : "The original Twitter Fax Gateway"
     meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Twax'}"
     == stylesheet_link_tag "application", :media => 'all', 'data-turbolinks-track' => true
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
