@@ -6,7 +6,7 @@ class WebhooksController < ApplicationController
 
   def inbound_mail
     if params[:mandrill_events]
-      params[:mandrill_events].each do |event|
+      JSON.parse(params[:mandrill_events]).each do |event|
         InboundMail.create!(data: event)
       end
     end
