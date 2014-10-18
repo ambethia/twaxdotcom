@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.0.beta1'
 gem 'thin'
 gem 'pg'
+gem 'delayed_job_active_record'
 
 gem 'sass-rails', '~> 5.0.0.beta1'
 gem 'bootstrap-sass'
