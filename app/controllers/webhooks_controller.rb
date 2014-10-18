@@ -10,5 +10,7 @@ class WebhooksController < ApplicationController
         InboundMail.create!(data: event)
       end
     end
+
+    head :ok
   end
 end
