@@ -43,6 +43,12 @@ ActiveRecord::Schema.define(version: 20141018175446) do
     t.json     "payload"
   end
 
+  create_table "inbound_mails", force: true do |t|
+    t.json     "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pages", force: true do |t|
     t.integer  "fax_id"
     t.string   "file"

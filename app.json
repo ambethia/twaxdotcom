@@ -5,7 +5,9 @@
   "repository": "",
   "keywords": [
   ],
-  "scripts": {},
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
   "env": {
     "MANDRILL_USERNAME": {
       "description": "Your Mandrill address for sending mail.",

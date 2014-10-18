@@ -1,4 +1,6 @@
 class WebhooksController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+
   def recieve
     Fax.handle_incoming_fax({
       phaxio_id: params[:fax][:id],
@@ -7,5 +9,15 @@ class WebhooksController < ApplicationController
       cost: params[:fax][:cost],
       payload: params[:fax]
     })
+  end
+
+  def inbound_mail
+    if params[:mandrill_events]
+      JSON.parse(params[:mandrill_events]).each do |event|
+        InboundMail.create!(data: event)
+      end
+    end
+
+    head :ok
   end
 end
