@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :users
   root to: 'visitors#index'
-  get '/real' => 'visitors#real'
+
+  %i(real help help_left help_right).each do |action|
+    get "/#{action}" => "visitors##{action}"
+  end
+
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signin' => 'sessions#new', :as => :signin
   get '/signout' => 'sessions#destroy', :as => :signout

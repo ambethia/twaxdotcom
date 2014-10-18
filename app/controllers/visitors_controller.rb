@@ -3,7 +3,8 @@ class VisitorsController < ApplicationController
     render layout: 'placeholder'
   end
 
-  def real
-
+  %i(real help help_left help_right).each do |action|
+    define_method action do
+    end
   end
 end
