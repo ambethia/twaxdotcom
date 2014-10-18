@@ -11,17 +11,18 @@ class User < ActiveRecord::Base
   end
 
   def self.update_or_create_with_omniauth(auth)
-    find_or_initialize_by( :provider => auth['provider'], :uid => auth['uid'].to_s) do |user|
-      if auth['info']
-         user.name = auth['info']['name']
-      end
-      if auth['credentials']
-        user.token  = auth['credentials']['token']
-        user.secret = auth['credentials']['secret']
-      end
-
-      user.save!
+    user = find_or_initialize_by( :provider => auth['provider'], :uid => auth['uid'].to_s)
+    if auth['info']
+       user.name = auth['info']['name']
     end
+
+    if auth['credentials']
+      user.token  = auth['credentials']['token']
+      user.secret = auth['credentials']['secret']
+    end
+
+    user.save!
+    user
   end
 
 
