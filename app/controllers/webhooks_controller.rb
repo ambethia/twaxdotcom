@@ -5,8 +5,10 @@ class WebhooksController < ApplicationController
   end
 
   def inbound_mail
-    params[:mandrill_events].each do |event|
-      InboundMail.create!(data: event)
+    if params[:mandrill_events]
+      params[:mandrill_events].each do |event|
+        InboundMail.create!(data: event)
+      end
     end
   end
 end
