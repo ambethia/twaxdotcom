@@ -1,12 +1,12 @@
-doctype frameset
+doctype html
 html
-  head
-    title
-      | Twax -&nbsp;
-      = content_for?(:title) ? yield(:title) : "The original Twitter Fax Gateway"
-    meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Twax'}"
-    == stylesheet_link_tag "application", :media => 'all', 'data-turbolinks-track' => true
-    == javascript_include_tag 'application', 'data-turbolinks-track' => true
-    == csrf_meta_tags
+  == render :partial => "shared/head"
   body class=controller_name
     == yield
+
+  p
+    font face="(Times New Roman), Times, serif"
+      i
+        | © 1997-2014
+        b www.twaxdotcom.com
+        | All Rgihts Reserved.
