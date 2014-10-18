@@ -10,14 +10,26 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.create_with_omniauth(auth)
-    create! do |user|
-      user.provider = auth['provider']
-      user.uid = auth['uid']
+  def self.update_or_create_with_omniauth(auth)
+    find_or_initialize_by( :provider => auth['provider'], :uid => auth['uid'].to_s) do |user|
       if auth['info']
-         user.name = auth['info']['name'] || ""
+         user.name = auth['info']['name']
       end
+      if auth['credentials']
+        user.token  = auth['credentials']['token']
+        user.secret = auth['credentials']['secret']
+      end
+
+      user.save!
     end
   end
+
+
+# client = Twitter::Streaming::Client.new do |config|
+#   config.consumer_key        = "YOUR_CONSUMER_KEY"
+#   config.consumer_secret     = "YOUR_CONSUMER_SECRET"
+#   config.access_token        = "YOUR_ACCESS_TOKEN"
+#   config.access_token_secret = "YOUR_ACCESS_SECRET"
+# end
 
 end
