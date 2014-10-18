@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: twax
+test:
+  <<: *default
+  database: twax_test
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
