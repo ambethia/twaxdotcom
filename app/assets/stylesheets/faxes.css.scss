@@ -77,6 +77,12 @@ img.hr {
   position: absolute;
   right: 30px;
   top: -70px;
+
+  &:hover {
+    width: 250px;
+    right: 0;
+    top: -100px;
+  }
 }
 
 .guide {
