@@ -3,4 +3,4 @@ html
   == render :partial => "shared/head"
 frameset cols="20%,80%"
   frame src="/help/menu.html" name="left"
-  frame src="/help/#{params[:page].downcase || 'default'}.html" name="right"
+  frame src="/help/#{page_name}.html" name="right"
