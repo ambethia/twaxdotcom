@@ -7,7 +7,8 @@ class WebhooksController < ApplicationController
       metadata: params[:metadata],
       fax_number: params[:fax][:from_number],
       cost: params[:fax][:cost],
-      payload: params[:fax]
+      file: params[:filename],
+      payload: params[:fax],
     })
   end
 
