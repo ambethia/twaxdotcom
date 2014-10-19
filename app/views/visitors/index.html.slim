@@ -1,19 +1,7 @@
 .container
   .row
     .col-xs-4
-      .links-group
-        - if current_user
-          = link_to faxes_path(format: 'php') do
-            = image_tag 'fax-machine-icon.jpg', width: '15px'
-            |&nbsp;My Twaxes
-        - else
-          = link_to try_now_path do
-            = image_tag 'tw-sign-in.png'
-            |&nbsp;&nbsp;
-        = link_to help_path(page: 'default', format: 'cgi') do
-          = image_tag 'siren.gif', width: '15px'
-          |&nbsp;Help
-        = link_to 'About Us', help_path(page: 'about')
+      == render 'shared/nav'
 
     .col-xs-8.logo-container
       = image_tag 'logo.png', class: 'logo'

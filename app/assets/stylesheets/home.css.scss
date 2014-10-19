@@ -1,6 +1,12 @@
 @import 'colors';
 @import 'mixins';
 
+
+.help {
+  @include comicSans;
+  font-weight: bold;
+}
+
 .logo {
   position: absolute;
   right: 0;

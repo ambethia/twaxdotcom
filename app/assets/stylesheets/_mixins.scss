@@ -28,3 +28,7 @@
   -ms-animation-iteration-count: $count;
   -ms-animation-timing-function: $timing;
 }
+
+@mixin comicSans {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
