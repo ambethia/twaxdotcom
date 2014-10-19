@@ -17,7 +17,7 @@
         tr
           td.content rowspan="2" width="80%" valign="top" height="1000"
             = image_tag 'fax_show/watermark.png', class: 'watermark'
-            = image_tag @page_url
+            = image_tag @page_url, class: 'fax-image'
           td height="100"
             h1
               = link_to 'Click To Download', @page_url

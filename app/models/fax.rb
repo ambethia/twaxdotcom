@@ -19,17 +19,14 @@ class Fax < ActiveRecord::Base
   class << self
 
     def handle_incoming_fax(options)
-      Phaxio.get_fax_file(id: options[:phaxio_id], type: 'p') do |file|
-        user = User.find(options.metadata.to_i)
-        if user
-          faxe = user.faxes.create(options.merge(file: file))
-          Fax.convert_to_images(fax.id)
-        else
-          # TODO: Tweet fax from our own account?
-        end
+      user = User.where(id: options[:metadata].to_i).first
+      if user
+        fax = user.faxes.create(options)
+        Fax.convert_to_images(fax.id)
+      else
+        Fax.create(options)
       end
     end
-    handle_asynchronously :handle_incoming_fax
 
     def convert_to_images(id)
       fax = Fax.find(id)

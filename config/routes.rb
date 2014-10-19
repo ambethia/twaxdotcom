@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/signin' => 'sessions#new', :as => :signin
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/auth/failure' => 'sessions#failure'
-  get '/fax/receive' => 'webhooks#receive'
+  post '/fax/receive' => 'webhooks#receive'
 
   get '/help(/:action)', controller: 'help', as: 'help'
 
