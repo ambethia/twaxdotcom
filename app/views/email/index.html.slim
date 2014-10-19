@@ -1,0 +1,28 @@
+h1
+  center EMAILS
+
+center
+  table border="4" cellpadding="2" cellspacing="2" width="960"
+    thead
+      tr
+        th To
+        th From
+        th Subject
+        th Created At
+    tbody
+      - @emails.each do |email|
+        tr
+          td
+            center= email['data']['msg']['to'] rescue nil
+          td
+            center= email['data']['msg']['from_email'] rescue nil
+          td
+            center= link_to(email['data']['msg']['subject'], email_path(email)) rescue nil
+          td
+            center= email.created_at rescue nil
+
+br
+br
+br
+br
+br

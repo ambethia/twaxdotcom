@@ -15,5 +15,8 @@ Rails.application.routes.draw do
 
   get '/index' => 'visitors#index'
 
+  get '/secret/emails' => 'email#index', as: 'emails'
+  get '/secret/emails/:id' => 'email#show', as: 'email'
+
   match '/mail' => 'webhooks#inbound_mail', via: [:get, :post]
 end
