@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   after_create :generate_barcode
 
+  after_save :identify_analytics
+
   def set_default_role
     if User.count == 0
       self.role ||= :admin
@@ -33,6 +35,7 @@ class User < ActiveRecord::Base
     user = find_or_initialize_by( :provider => auth['provider'], :uid => auth['uid'].to_s)
     if auth['info']
        user.name = auth['info']['name']
+       user.nicknake = auth['info']['nickname']
     end
 
     if auth['credentials']
@@ -50,6 +53,17 @@ class User < ActiveRecord::Base
     oauth_data && oauth_data['info']['image']
   end
 
+  def identify_analytics
+    if [name_changed?, nickname_changed?].any?
+      Analytics.identify(
+          user_id: user.id.to_s,
+          traits: {
+            name: user.name,
+            nickname: user.nickname,
+            created_at: user.created_at
+      })
+    end
+  end
 
 # client = Twitter::Streaming::Client.new do |config|
 #   config.consumer_key        = "YOUR_CONSUMER_KEY"

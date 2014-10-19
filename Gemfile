@@ -29,6 +29,8 @@ gem 'omniauth-twitter'
 gem 'phaxio'
 gem 'twitter'
 
+gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

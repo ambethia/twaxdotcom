@@ -35,6 +35,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    analytics-ruby (2.0.10)
     arel (6.0.0.beta1)
     better_errors (2.0.0)
       coderay (>= 1.0.0)
@@ -278,6 +279,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  analytics-ruby (~> 2.0.0)
   better_errors
   binding_of_caller
   bootstrap-sass
