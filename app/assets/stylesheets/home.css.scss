@@ -32,7 +32,7 @@
     }
 
     &:last-child:after {
-      content: '&nbsp;';
+      content: ' &nbsp;';
       padding: 0 !important;
     }
   }
@@ -62,7 +62,7 @@
   left: 30px;
 }
 
-.social-media-block {
+.sm-block {
   left: 30px;
   bottom: -30px;
   width: 300px;
