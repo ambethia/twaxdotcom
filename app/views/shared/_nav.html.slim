@@ -11,7 +11,7 @@
         |&nbsp;My Twaxes
 
   - else
-    = link_to try_now_path do
+    = link_to (current_user ? faxes_path(format: 'cfm') : signin_path) do
       = image_tag 'tw-sign-in.png'
       |&nbsp;&nbsp;
   = link_to help_path(page: 'default', format: 'cgi'), class: 'help' do

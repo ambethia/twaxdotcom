@@ -1,0 +1,6 @@
+<meta name="twitter:card" content="photo" />
+<meta name="twitter:site" content="@tweetfaxgateway" />
+<meta name="twitter:title" content="My Tweet via Fax" />
+<meta name="twitter:description" content="<%= @fax.outgoing_tweet && @fax.outgoing_tweet.message || "My twaxed tweet is pretty rad."%>" />
+<meta name="twitter:image" content="<%= @page_url %>" />
+<meta name="twitter:url" content="<%= fax_url(@fax) %>" />

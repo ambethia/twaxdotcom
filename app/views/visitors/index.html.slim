@@ -19,7 +19,7 @@
         video.image-block.video-tag-block autoplay=true loop=true
           source id="mp4source" src=@video_url
       = image_tag 'sm.png',   class: 'image-block sm-block'
-      = link_to try_now_path do
+      = link_to (current_user ? faxes_path(format: 'cfm') : signin_path) do
         = image_tag 'try-now-button.png', class: 'image-block try-now-block'
 
   .row

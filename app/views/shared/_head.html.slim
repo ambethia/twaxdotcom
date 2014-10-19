@@ -5,6 +5,12 @@ head
   meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Twax'}"
   meta name="GENERATOR" content="Microsoft FrontPage 98"
   meta name="ProgId" content="FrontPage.Editor.Document"
+
+  - if [controller_name, action_name] == ['faxes', 'show']
+    = render 'shared/fax_twitter_card'
+  - else
+    = render 'shared/generic_twitter_card'
+
   == stylesheet_link_tag "application", :media => 'all'
   == javascript_include_tag 'application'
   == csrf_meta_tags
