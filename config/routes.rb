@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
   resources :users
-  if Rails.env.production?
-    root to: 'visitors#placeholder'
-    get '/real' => 'visitors#index'
-  else
-    root to: 'visitors#index'
-  end
+
+  root to: 'visitors#index'
 
   resources :faxes, path: 'twaxes'
 
