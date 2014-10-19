@@ -26,7 +26,8 @@
     .row
       .col-xs-12
         h1 Getting Started
-        = image_tag 'print-pdf.png', class: 'image-block print-pdf-block'
+        = link_to new_fax_path(format: 'pdf'), target: '_blank' do
+          = image_tag 'print-pdf.png', class: 'image-block print-pdf-block'
 
 
 .container.content-container

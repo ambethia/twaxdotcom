@@ -8,6 +8,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'grim'
 gem 'fog'
+gem 'pdfkit'
 
 gem 'sass-rails', '~> 5.0.0.beta1'
 gem 'bootstrap-sass'
