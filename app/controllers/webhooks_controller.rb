@@ -2,7 +2,7 @@ class WebhooksController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def receive
-    fax = JSON.parse params[:fax]
+    fax = JSON.parse(params[:fax]).with_indifferent_access
     Fax.handle_incoming_fax({
       phaxio_id: fax[:id],
       metadata: params[:metadata],
