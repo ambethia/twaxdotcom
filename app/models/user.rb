@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     user = find_or_initialize_by( :provider => auth['provider'], :uid => auth['uid'].to_s)
     if auth['info']
        user.name = auth['info']['name']
-       user.nicknake = auth['info']['nickname']
+       user.nickname = auth['info']['nickname']
     end
 
     if auth['credentials']
@@ -56,20 +56,22 @@ class User < ActiveRecord::Base
   def identify_analytics
     if [name_changed?, nickname_changed?].any?
       Analytics.identify(
-          user_id: user.id.to_s,
-          traits: {
-            name: user.name,
-            nickname: user.nickname,
-            created_at: user.created_at
-      })
+        user_id:      self.id,
+        traits: {
+          name:       self.name,
+          nickname:   self.nickname,
+          created_at: self.created_at
+        }
+      )
     end
   end
 
-# client = Twitter::Streaming::Client.new do |config|
-#   config.consumer_key        = "YOUR_CONSUMER_KEY"
-#   config.consumer_secret     = "YOUR_CONSUMER_SECRET"
-#   config.access_token        = "YOUR_ACCESS_TOKEN"
-#   config.access_token_secret = "YOUR_ACCESS_SECRET"
-# end
-
+  def twitter_client
+    @twitter_client ||= Twitter::REST::Client.new do |config|
+      config.consumer_key        = Rails.application.secrets.omniauth_provider_key
+      config.consumer_secret     = Rails.application.secrets.omniauth_provider_secret
+      config.access_token        = token
+      config.access_token_secret = secret
+    end
+  end
 end

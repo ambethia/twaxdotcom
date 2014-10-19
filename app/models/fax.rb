@@ -3,14 +3,32 @@ class Fax < ActiveRecord::Base
   has_many :pages
   mount_uploader :file, FaxUploader
 
+  has_one :outgoing_tweet
+
+  after_create :track
+
+  def track
+    Analytics.track(user_id: user.id, event: 'Receive Twax')
+  end
+  handle_asynchronously :track
+
+  def permalink
+    Rails.application.routes.url_helpers.fax_url(id, :host => ENV["DOMAIN_NAME"])
+  end
+
   class << self
+
     def handle_incoming_fax(options)
       Phaxio.get_fax_file(id: options[:phaxio_id], type: 'p') do |file|
-        fax = Fax.create options.merge(file: file)
-        Fax.convert_to_images(fax.id)
+        user = User.find(options.metadata.to_i)
+        if user
+          faxe = user.faxes.create(options.merge(file: file))
+          Fax.convert_to_images(fax.id)
+        else
+          # TODO: Tweet fax from our own account?
+        end
       end
     end
-
     handle_asynchronously :handle_incoming_fax
 
     def convert_to_images(id)
@@ -26,35 +44,30 @@ class Fax < ActiveRecord::Base
         image_tempfile = Tempfile.new(["fax_#{id}_page_#{index}", ".png"])
         text_tempfile = Tempfile.new(["fax_#{id}_page_#{index}", ".txt"])
 
-        saved = image.save(image_tempfile.path)
+        image.save(image_tempfile.path)
 
-        puts "Starting tesseract"
         %x(tesseract #{image_tempfile.path} #{text_tempfile.path})
 
-        # puts "Reading result"
-        File.open(text_tempfile.path + ".txt") do |file|
+        File.open(text_tempfile.path + ".txt") do |file| # omfg so stupid, w/e
           contents << file.read + "\n"
         end
 
         fax.pages.create!(file: image_tempfile)
+
+        image_tempfile.unlink
+        text_tempfile.unlink
       end
 
-      tweet = OutgoingTweet.new
-      tweet.fax = fax
-      tweet.user = fax.user
-      tweet.message = contents.strip
-      tweet.save!
+      outgoing_tweet = fax.create_outgoing_tweet! do |tweet|
+        tweet.user = fax.user
+        tweet.message = contents.strip
+      end
+      tweet = outgoing_tweet.deliver
+      outgoing_tweet.tweet_id = tweet.id
+      outgoing_tweet.save
 
-      # Fax.tweet_fax(id)
+      tempfile.unlink
     end
-
     handle_asynchronously :convert_to_images
-
-    def tweet_fax(id)
-      fax = Fax.find(id)
-      # Tweet...
-    end
-
-    handle_asynchronously :tweet_fax
   end
 end

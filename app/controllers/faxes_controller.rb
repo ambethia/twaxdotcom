@@ -1,5 +1,5 @@
 class FaxesController < ApplicationController
-  before_filter :check_for_current_user
+  before_filter :authenticate_user!
 
   def index
     @faxes = current_user.faxes
