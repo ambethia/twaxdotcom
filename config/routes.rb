@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     root to: 'visitors#index'
   end
 
-  resources :faxes
+  resources :faxes, path: 'twaxes'
 
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signin' => 'sessions#new', :as => :signin
