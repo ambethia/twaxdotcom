@@ -20,6 +20,9 @@
 
 .links-group {
 
+  z-index: 99999999;
+  position: relative;
+  display: block;
   padding-top: 15px;
 
   a {
