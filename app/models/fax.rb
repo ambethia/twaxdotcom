@@ -34,15 +34,15 @@ class Fax < ActiveRecord::Base
     def convert_to_images(id)
       fax = Fax.find(id)
 
-      tempfile = Tempfile.new("fax_id_#{id}.pdf")
+      tempfile = Tempfile.new("fax_id_#{fax.id}.pdf")
       File.open(tempfile.path, 'wb+') { |f| f.write fax.file.read }
 
       pdf = Grim.reap(tempfile.path)
 
       contents = ""
       pdf.each_with_index do |image, index|
-        image_tempfile = Tempfile.new(["fax_#{id}_page_#{index}", ".png"])
-        text_tempfile = Tempfile.new(["fax_#{id}_page_#{index}", ".txt"])
+        image_tempfile = Tempfile.new(["fax_#{fax.id}_page_#{index}", ".png"])
+        text_tempfile = Tempfile.new(["fax_#{fax.id}_page_#{index}", ".txt"])
 
         image.save(image_tempfile.path)
 
