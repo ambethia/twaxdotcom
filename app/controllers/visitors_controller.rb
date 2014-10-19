@@ -7,7 +7,7 @@ class VisitorsController < ApplicationController
   end
 
   def try_now_path
-    current_user ? faxes_path : signin_path
+    current_user ? faxes_path(format: 'cfm') : signin_path
   end
 
   helper_method :try_now_path

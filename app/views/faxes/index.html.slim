@@ -4,7 +4,9 @@
       .col-xs-12
         .links-group
           = image_tag 'your-logo.jpg', class: 'image-block your-logo-block'
-          = link_to "Twax Home", root_url
+          = link_to root_url do
+            = image_tag 'home-icon.png', height: '26px', width: '35'
+            | Twax Home
         br
 
     .row
