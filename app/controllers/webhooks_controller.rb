@@ -1,7 +1,7 @@
 class WebhooksController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
-  def recieve
+  def receive
     Fax.handle_incoming_fax({
       phaxio_id: params[:fax][:id],
       metadata: params[:metadata],
