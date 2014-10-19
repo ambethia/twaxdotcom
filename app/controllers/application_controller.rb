@@ -7,7 +7,15 @@ class ApplicationController < ActionController::Base
   helper_method :user_signed_in?
   helper_method :correct_user?
 
+  before_filter :fix_formats
+
   private
+
+    def fix_formats
+      if ["cgi", "php", "cfm"].include? params[:format]
+        request.format = :html
+      end
+    end
 
     def current_user
       begin
