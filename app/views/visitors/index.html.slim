@@ -13,6 +13,7 @@
         = link_to help_path(page: 'default', format: 'cgi') do
           = image_tag 'siren.gif', width: '15px'
           |&nbsp;Help
+        = link_to 'About Us', help_path(page: 'about')
 
     .col-xs-8.logo-container
       = image_tag 'logo.png', class: 'logo'
@@ -23,20 +24,22 @@
       = image_tag 'background.jpg',     class: 'background-block', width: '100%', height: '482'
       a href="http://railsrumble.com/entries/250-just-the-fax-maam"
         = image_tag 'as-seen-on-rr.png',  class: 'image-block as-seen-on-rr'
+        marquee.please-vote.image-block Please Vote For Us In The Rails Rumble!!!!!
       = image_tag 'video.png',          class: 'image-block video-block'
-      = image_tag 'sm.png',   class: 'image-block sm-block', onclick: 'alert("COMING SOON!")'
+      = image_tag 'sm.png',   class: 'image-block sm-block'
       = link_to try_now_path do
         = image_tag 'try-now-button.png', class: 'image-block try-now-block'
 
   .row
     .col-xs-12.third-row
-      = link_to help_path(page: 'supported_FAX_MACHINES')
+      = link_to help_path(page: 'supported_FAX_MACHINES') do
         = image_tag 'fax-machines.png',   class: 'image-block fax-machines-block'
-      = image_tag 'how-it-works.png',   class: 'image-block how-it-works-block'
+      = link_to help_path(page: 'about') do
+        = image_tag 'how-it-works.png',   class: 'image-block how-it-works-block'
 
   .row
     .col-xs-12.fourth-row
-      = image_tag 'mobile.png',         class: 'image-block mobile-block'
+      = image_tag 'mobile-improved.png',         class: 'image-block mobile-block'
 
 javascript:
   $(document).on('mousedown', function(event) {
@@ -44,3 +47,9 @@ javascript:
       alert("Copyright 1998 Twax Inc.");
     }
   })
+
+  $('.sm-block').on('click', function(event) {
+    var text = "#{URI.encode("Twax is all that and a bag of chips twaxdotcom.com @tweetfaxgateway #RailsRumble")}"
+    popup = window.open("https://twitter.com/intent/tweet?text=" + text, 'Twitter', 'directories=0,titlebar=0,toolbar=0,location=0,status=0,menubar=0,scrollbars=no,resizable=no,height=250,width=800')
+    if (window.focus) { popup.focus() }
+  });

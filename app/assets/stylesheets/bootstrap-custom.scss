@@ -51,3 +51,16 @@
 .container {
   width: 970px !important;
 }
+
+.tooltip.top {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 13px;
+
+  .tooltip-inner {
+    border-radius: 0;
+    padding: 0;
+    font-weight: bold;
+    color: yellow;
+    background: blue;
+  }
+}

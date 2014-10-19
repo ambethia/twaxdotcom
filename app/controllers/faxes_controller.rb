@@ -1,5 +1,5 @@
 class FaxesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:show]
 
   def index
     @faxes = current_user.faxes
@@ -10,6 +10,7 @@ class FaxesController < ApplicationController
   end
 
   def show
-    @fax = current_user.faxes.find params[:id]
+    @fax = Fax.find params[:id]
+    @page_url = @fax.pages.first.file.url
   end
 end

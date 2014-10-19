@@ -26,6 +26,11 @@ body {
   cursor: image-url('cursor.gif'), auto;
 }
 
-a:hover {
+a:hover, .sm-block {
   cursor: image-url('fax-cursor.gif'), auto;
+}
+
+#counter:hover {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
 }

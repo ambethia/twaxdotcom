@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'mixins';
 
 .logo {
   position: absolute;
@@ -41,6 +42,7 @@
 .image-block {
   position: absolute;
   z-index: 100;
+  @include transition(all, 0.2s, ease-in-out);
 }
 
 .beta-block {
@@ -81,17 +83,26 @@
 
 
 .as-seen-on-rr {
-  top: 20px;
+  top: 50px;
   left: 50px;
   width: 80px;
   z-index: 101;
   border: 4px solid purple;
 
-  &:hover {
-    width: 100px;
-    left: 45px;
-    top: 10px;
-  }
+    @include animationconfig(shake, 0.8s, infinite, linear);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.please-vote {
+  top: 0px;
+  left: 20px;
+  background: blue;
+  color: yellow;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  z-index: 999;
+  height: 30px;
+  font-size: 20px;
 }
 
 .video-block {
@@ -103,12 +114,23 @@
   left: 30px;
   bottom: -30px;
   width: 300px;
+
+  &:hover {
+    bottom: -10px;
+    left: 50px;
+    width: 200px;
+  }
 }
 
 .try-now-block {
   right: 30px;
   bottom: 0px;
   width: 450px;
+
+  &:hover {
+    width: 470px;
+    right: 20px;
+  }
 }
 
 .third-row {
@@ -118,11 +140,21 @@
 .fax-machines-block {
   top: 50px;
   left: 0px;
+  border: 3px solid blue;
+
+  &:hover {
+    border: 4px solid yellow;
+  }
 }
 
 .how-it-works-block {
   right: 0;
   top: 0px;
+  @include transform(skew(0deg,0deg));
+
+  &:hover {
+    @include transform(skew(5deg,1deg));
+  }
 }
 
 .mobile-block {

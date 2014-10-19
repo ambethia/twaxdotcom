@@ -13,5 +13,7 @@ Rails.application.routes.draw do
 
   get '/help(/:action)', controller: 'help', as: 'help'
 
+  get '/index' => 'visitors#index'
+
   match '/mail' => 'webhooks#inbound_mail', via: [:get, :post]
 end
