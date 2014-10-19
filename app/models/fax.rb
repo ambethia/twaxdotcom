@@ -43,17 +43,21 @@ class Fax < ActiveRecord::Base
       pdf.each_with_index do |image, index|
         image_tempfile = Tempfile.new(["fax_#{fax.id}_page_#{index}", ".png"])
         text_tempfile = Tempfile.new(["fax_#{fax.id}_page_#{index}", ".txt"])
+        cropped_tempfile = Tempfile.new(["fax_#{fax.id}_page_#{index}_cropped", ".png"])
 
         image.save(image_tempfile.path)
 
-        %x(tesseract #{image_tempfile.path} #{text_tempfile.path})
+        %x(convert -crop 820x420+75+245 #{image_tempfile.path} #{cropped_tempfile.path})
+
+        %x(tesseract #{cropped_tempfile.path} #{text_tempfile.path})
 
         File.open(text_tempfile.path + ".txt") do |file| # omfg so stupid, w/e
           contents << file.read + "\n"
         end
 
-        fax.pages.create!(file: image_tempfile)
+        fax.pages.create!(file: cropped_tempfile)
 
+        cropped_tempfile.unlink
         image_tempfile.unlink
         text_tempfile.unlink
       end
