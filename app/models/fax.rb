@@ -1,5 +1,5 @@
 class Fax < ActiveRecord::Base
-
+  belongs_to :user
   has_many :pages
   mount_uploader :file, FaxUploader
 
@@ -21,11 +21,29 @@ class Fax < ActiveRecord::Base
 
       pdf = Grim.reap(tempfile.path)
 
+      contents = ""
       pdf.each_with_index do |image, index|
         image_tempfile = Tempfile.new(["fax_#{id}_page_#{index}", ".png"])
+        text_tempfile = Tempfile.new(["fax_#{id}_page_#{index}", ".txt"])
+
         saved = image.save(image_tempfile.path)
+
+        puts "Starting tesseract"
+        %x(tesseract #{image_tempfile.path} #{text_tempfile.path})
+
+        # puts "Reading result"
+        File.open(text_tempfile.path + ".txt") do |file|
+          contents << file.read + "\n"
+        end
+
         fax.pages.create!(file: image_tempfile)
       end
+
+      tweet = OutgoingTweet.new
+      tweet.fax = fax
+      tweet.user = fax.user
+      tweet.message = contents.strip
+      tweet.save!
 
       # Fax.tweet_fax(id)
     end

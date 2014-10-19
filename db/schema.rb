@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018233551) do
+ActiveRecord::Schema.define(version: 20141019010816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,18 @@ ActiveRecord::Schema.define(version: 20141018233551) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "outgoing_tweets", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "fax_id"
+    t.string   "message"
+    t.datetime "tweeted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "outgoing_tweets", ["fax_id"], name: "index_outgoing_tweets_on_fax_id", using: :btree
+  add_index "outgoing_tweets", ["user_id"], name: "index_outgoing_tweets_on_user_id", using: :btree
 
   create_table "pages", force: true do |t|
     t.integer  "fax_id"
