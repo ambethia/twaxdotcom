@@ -1,0 +1,33 @@
+@import 'colors';
+
+.faxes.show {
+  background-color: $aqua;
+
+  h1 {
+    font-family: 'Times New Roman';
+    font-weight: bold;
+
+    a {
+      color: blue;
+      text-decoration: underline;
+      line-height: 10px;
+    }
+  }
+
+
+  table {
+    margin-bottom: 100px;
+
+    td {
+      overflow: hidden;
+      position: relative;
+    }
+  }
+
+  .watermark {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+}

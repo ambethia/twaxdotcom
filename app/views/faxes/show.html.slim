@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-xs-12
+      = image_tag 'fax_show/logo.png', class: 'pull-right'
+    .col-xs-12
+      = image_tag 'fax_show/twaxy-images.png', class: 'pull-right'
+      h1 View your "TWAX" fax below
+
+    .col-xs-12
+
+      table border="2" width="100%" bgcolor="white"
+        tr
+          td.content rowspan="2" width="80%" valign="top" height="1000"
+            = image_tag 'fax_show/watermark.png', class: 'watermark'
+            = image_tag @page_url
+          td height="100"
+            h1
+              = link_to 'Click To Download', @page_url
+        tr valign="top"
+          td
+            = link_to @page_url do
+              = image_tag 'fax_show/download.png'
