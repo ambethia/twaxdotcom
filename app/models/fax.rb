@@ -19,7 +19,11 @@ class Fax < ActiveRecord::Base
   class << self
 
     def handle_incoming_fax(options)
+      exists = Fax.where(phaxio_id: options[:phaxio_id]).count
+      return if exists > 0
+
       user = User.where(id: options[:metadata].to_i).first
+
       if user
         fax = user.faxes.create(options)
         Fax.convert_to_images(fax.id)
