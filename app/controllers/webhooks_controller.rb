@@ -7,7 +7,6 @@ class WebhooksController < ApplicationController
       phaxio_id: fax[:id],
       metadata: params[:metadata],
       fax_number: fax[:from_number],
-      cost: fax[:cost],
       file: params[:filename],
       payload: fax,
     })
