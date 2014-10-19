@@ -14,8 +14,10 @@
         = image_tag 'as-seen-on-rr.png',  class: 'image-block as-seen-on-rr'
         marquee.please-vote.image-block Please Vote For Us In The Rails Rumble!!!!!
       = image_tag 'video.png',          class: 'image-block video-block'
-      video.image-block.video-tag-block autoplay=true loop=true
-        source id="mp4source" src="http://zippy.gfycat.com/AlertSpicyBlueandgoldmackaw.mp4"
+
+      - if @video_url
+        video.image-block.video-tag-block autoplay=true loop=true
+          source id="mp4source" src=@video_url
       = image_tag 'sm.png',   class: 'image-block sm-block'
       = link_to try_now_path do
         = image_tag 'try-now-button.png', class: 'image-block try-now-block'
