@@ -10,6 +10,8 @@ class WebhooksController < ApplicationController
       file: params[:filename],
       payload: fax,
     })
+
+    head 200
   end
 
   def inbound_mail
