@@ -22,6 +22,10 @@ body {
   background-color: $aqua;
 }
 
-body, a:hover {
-  cursor: image-url('cursor.gif'), auto
+body {
+  cursor: image-url('cursor.gif'), auto;
+}
+
+a:hover {
+  cursor: image-url('fax-cursor.gif'), auto;
 }
