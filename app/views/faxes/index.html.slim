@@ -2,12 +2,7 @@
   .container
     .row
       .col-xs-12
-        .links-group
-          = image_tag 'your-logo.jpg', class: 'image-block your-logo-block'
-          = link_to root_url do
-            = image_tag 'home-icon.png', height: '26px', width: '35'
-            | Twax Home
-          = link_to 'About Us', help_path(page: 'about')
+        == render 'shared/nav'
         br
 
     .row

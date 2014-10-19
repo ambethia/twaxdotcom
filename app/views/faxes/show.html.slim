@@ -1,9 +1,14 @@
 .container
   .row
     .col-xs-12
-      = image_tag 'fax_show/logo.png', class: 'pull-right'
+      = link_to root_path, class: 'pull-right' do
+        = image_tag 'fax_show/logo.png'
+
+      == render 'shared/nav'
+
     .col-xs-12
-      = image_tag 'fax_show/twaxy-images.png', class: 'pull-right'
+      = link_to root_path do
+        = image_tag 'fax_show/twaxy-images.png', class: 'pull-right'
       h1 View your "TWAX" fax below
 
     .col-xs-12

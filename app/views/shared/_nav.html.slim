@@ -1,0 +1,20 @@
+.links-group
+
+  - unless current_page?(root_path)
+    = link_to root_path do
+      = image_tag 'home-icon.png', height: '26px', width: '35'
+
+  - if current_user
+    - if [controller_name, action_name] != ['faxes', 'index']
+      = link_to faxes_path(format: 'php') do
+        = image_tag 'fax-machine-icon.jpg', width: '15px'
+        |&nbsp;My Twaxes
+
+  - else
+    = link_to try_now_path do
+      = image_tag 'tw-sign-in.png'
+      |&nbsp;&nbsp;
+  = link_to help_path(page: 'default', format: 'cgi'), class: 'help' do
+    = image_tag 'siren.gif', width: '15px'
+    |&nbsp;Help
+  = link_to 'About Us', help_path(page: 'about')
