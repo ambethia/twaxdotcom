@@ -13,6 +13,7 @@
         = link_to help_path(page: 'default', format: 'cgi') do
           = image_tag 'siren.gif', width: '15px'
           |&nbsp;Help
+        = link_to 'About Us', help_path(page: 'about')
 
     .col-xs-8.logo-container
       = image_tag 'logo.png', class: 'logo'
@@ -31,9 +32,10 @@
 
   .row
     .col-xs-12.third-row
-      = link_to help_path(page: 'supported_FAX_MACHINES')
+      = link_to help_path(page: 'supported_FAX_MACHINES') do
         = image_tag 'fax-machines.png',   class: 'image-block fax-machines-block'
-      = image_tag 'how-it-works.png',   class: 'image-block how-it-works-block'
+      = link_to help_path(page: 'about') do
+        = image_tag 'how-it-works.png',   class: 'image-block how-it-works-block'
 
   .row
     .col-xs-12.fourth-row

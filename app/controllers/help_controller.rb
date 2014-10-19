@@ -1,12 +1,11 @@
 class HelpController < ApplicationController
   layout false
 
-  def index
-  end
+  helper_method :page_name
+
+  private
 
   def page_name
     params[:page] && params[:page].downcase || 'default'
   end
-
-  helper_method :page_name
 end
